@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rania Darwisyah - Developer Portfolio</title>
+    <!-- Google Fonts - Inter for modern, clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Universal reset for consistent styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and main layout styles for a dark, professional theme */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #1A1A1A; /* Deep charcoal background */
+            color: #E0E0E0; /* Soft white text color for readability */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Container for content centering and responsiveness */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles - fixed at top with subtle blur */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Slightly transparent dark background */
+            backdrop-filter: blur(8px); /* Subtle blur effect */
+            z-index: 1000; /* Ensure header is on top of other content */
+            transition: background 0.3s ease; /* Smooth transition for background on scroll */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFFFFF; /* Pure white logo text */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #E0E0E0; /* Soft white links */
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px); /* Slight lift on hover */
+            color: #FFFFFF; /* Pure white on hover */
+        }
+
+        /* Underline effect on navigation links for visual feedback */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFFFFF; /* White underline */
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%; /* Expand underline on hover */
+        }
+
+        /* Hero Section styles for a striking first impression */
+        .hero {
+            min-height: 100vh; /* Changed to min-height to accommodate embed */
+            padding: 8rem 0 4rem; /* Adjusted padding for content and embed */
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 10; /* Ensure content is above particles */
+            margin-bottom: 3rem; /* Space between content and embed */
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #FFFFFF; /* Pure white heading */
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards; /* Fade in animation */
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards; /* Delayed fade in */
+        }
+
+        /* Call-to-action button styles for clear interaction */
+        .cta-button {
+            background-color: #FFFFFF; /* White background for contrast */
+            color: #1A1A1A; /* Dark text on white button */
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards; /* Delayed fade in */
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px); /* Lift on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
+            background-color: #F0F0F0; /* Slightly darker white on hover */
+        }
+
+        /* Floating particle styles for subtle background animation */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5); /* Semi-transparent white particles */
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite; /* Floating animation */
+        }
+
+        /* Keyframes for floating particles movement */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Section common styles for titles */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #FFFFFF; /* Pure white section titles */
+        }
+
+        /* Sections padding and background */
+        .projects, .extracurricular, .resume {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.03); /* Very subtle transparent white background */
+            margin-top: 2rem; /* Spacing between sections */
+        }
+
+        /* Project grid layout */
+        .projects-grid, .extracurricular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* Fixed image sizing for project cards */
+        .project-card img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Crop images to fit while maintaining aspect ratio */
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: block;
+            background-color: rgba(255, 255, 255, 0.1); /* Subtle background for loading */
+        }
+
+        /* Individual project card styling */
+        .project-card, .extracurricular-card {
+            background: rgba(255, 255, 255, 0.05); /* Transparent white background */
+            backdrop-filter: blur(6px); /* Blur effect */
+            border-radius: 12px; /* Slightly less rounded corners */
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex; /* Added for better layout control of inner elements */
+            flex-direction: column; /* Stack contents vertically */
+            justify-content: space-between; /* Push links to bottom */
+            min-height: 400px; /* Minimum height for consistency */
+        }
+
+        .project-card:hover, .extracurricular-card:hover {
+            transform: translateY(-8px); /* Lift on hover */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+            background: rgba(255, 255, 255, 0.08); /* Slightly less transparent on hover */
+        }
+
+        .project-card h3, .extracurricular-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #FFFFFF; /* White heading */
+        }
+
+        .project-card p, .extracurricular-card p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: #C0C0C0; /* Slightly darker white for body text */
+            flex-grow: 1; /* Allow paragraph to take available space */
+        }
+        
+        /* Image grid for multiple images - now with consistent sizing */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 1rem;
+        }
+        
+        .image-grid img {
+            width: 100%;
+            height: 150px; /* Fixed height for grid images */
+            object-fit: cover; /* Crop to fit */
+            border-radius: 8px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.1); /* Light transparent background */
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px; /* Rounded tags */
+            font-size: 0.85rem;
+            color: #FFFFFF; /* White text for tags */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-links, .extracurricular-links {
+            display: flex;
+            flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+            gap: 1rem;
+            margin-top: auto; /* Push to bottom of card */
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .image-grid img {
+                height: 120px;
+            }
+            
+            .project-card img {
+                height: 180px; /* Slightly smaller on mobile */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-grid img {
+                height: 150px;
+            }
+            
+            .project-card img {
+                height: 160px; /* Even smaller on very small screens */
+            }
+        }
+
+        .project-link, .llm-enhance-btn, .extracurricular-link { /* Style for new LLM button and certificate links */
+            padding: 0.5rem 1rem;
+            background-color: #333333; /* Dark gray button */
+            border-radius: 20px;
+            text-decoration: none;
+            color: #E0E0E0; /* Soft white text */
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none; /* Ensure no default button border */
+            cursor: pointer; /* Indicate clickability */
+        }
+
+        .project-link:hover, .llm-enhance-btn:hover, .extracurricular-link:hover {
+            transform: scale(1.03); /* Slightly enlarge on hover */
+            background-color: #555555; /* Lighter gray on hover */
+        }
+
+        /* Canva embed specific styling for seamless integration */
+        .canva-embed-wrapper {
+            position: relative;
+            width: 80%; /* Adjusted width for better fit in hero */
+            max-width: 800px; /* Max width for larger screens */
+            height: 0;
+            padding-top: 45%; /* Adjusted aspect ratio slightly for better hero integration */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+            border-radius: 12px;
+            overflow: hidden;
+            will-change: transform;
+            background: rgba(255, 255, 255, 0.05); /* Slight background for the embed area */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly stronger border */
+            animation: fadeInUp 1s ease 0.9s forwards; /* Delayed fade in */
+            margin-top: 2rem; /* Space from hero content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .canva-embed-wrapper iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .canva-credit {
+            text-align: center;
+            margin-top: 1em;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+            animation: fadeInUp 1s ease 1.2s forwards; /* Delayed fade in */
+        }
+
+        .canva-credit a {
+            color: #E0E0E0; /* Soft white link */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .canva-credit a:hover {
+            color: #FFFFFF; /* Pure white on hover */
+        }
+
+        /* Resume Section styles */
+        .resume {
+            text-align: center;
+        }
+
+        .resume-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .resume-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .resume-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow on buttons */
+        }
+
+        .download-btn {
+            background-color: #FFFFFF; /* White button */
+            color: #1A1A1A; /* Dark text */
+        }
+
+        .view-btn {
+            background: transparent;
+            color: #E0E0E0; /* Soft white text */
+            border: 2px solid #555555; /* Darker gray border */
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer styles for copyright and social links */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4); /* Darker transparent background */
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #FFFFFF; /* White icon color */
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.5rem; /* Larger emoji/icon */
+        }
+
+        .social-link:hover {
+            background: #333333; /* Darker gray on hover */
+            transform: translateY(-3px);
+        }
+
+        /* Animations for elements appearing on scroll */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments for various screen sizes */
+        @media (max-width: 768px) {
+            .nav-links {
+                /* For smaller screens, consider implementing a hamburger menu if desired */
+                display: none; /* Hidden on small screens to simplify, can be toggled with JS */
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .projects-grid, .extracurricular-grid {
+                grid-template-columns: 1fr; /* Single column for projects/certificates on small screens */
+            }
+
+            .resume-buttons {
+                flex-direction: column; /* Stack resume buttons vertically */
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .canva-embed-wrapper {
+                width: 95%; /* Adjust width for smaller screens */
+                padding-top: 56.2225%; /* Maintain aspect ratio */
+            }
+        }
+
+        /* Modal specific styles */
+        .llm-modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            backdrop-filter: blur(5px); /* Add blur for background */
+            -webkit-backdrop-filter: blur(5px); /* Safari support */
+        }
+
+        .llm-modal-content {
+            background-color: #2A2A2A; /* Dark background */
+            margin: 10% auto; /* 10% from the top and centered */
+            padding: 30px;
+            border: 1px solid #555;
+            width: 90%; /* Responsive width */
+            max-width: 700px; /* Max width for larger screens */
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.6); /* Deeper shadow */
+            position: relative; /* Needed for positioning close button */
+            display: flex;
+            flex-direction: column;
+            animation: fadeInScale 0.3s ease-out forwards; /* Fade in with slight scale effect */
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .llm-modal-content h3 {
+            color: #FFFFFF;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .llm-modal-content p#llmContent {
+            color: #E0E0E0;
+            line-height: 1.6;
+            min-height: 100px;
+            max-height: 400px; /* Limit height for scroll */
+            overflow-y: auto; /* Enable scroll for long content */
+            padding-right: 10px; /* Space for scrollbar */
+            white-space: pre-wrap; /* Preserve whitespace and break lines */
+            word-wrap: break-word; /* Break long words */
+        }
+
+        .llm-modal-close-btn {
+            background-color: #555555;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            align-self: flex-end; /* Align to the right */
+        }
+
+        .llm-modal-close-btn:hover {
+            background-color: #777777;
+            transform: translateY(-2px);
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #FFFFFF;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto; /* Center the spinner */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">RANIA DARWISYAH</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Certificates</a></li> <!-- New nav link -->
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        </div>
+        <!-- Canva Embed Code - now part of the hero section -->
+        <div class="canva-embed-wrapper">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                src="https://www.canva.com/design/DAGpk8UJR6o/WNY_-3E5jRcEPrV1Pitp6w/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+        </div>
+        <div class="canva-credit">
+            <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGpk8UJR6o&#x2F;WNY_-3E5jRcEPrV1Pitp6w&#x2F;view?utm_content=DAGpk8UJR6o&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener"></a>
+        </div>
+        <!-- Floating particles for visual effect -->
+        <div class="particle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+        <div class="particle" style="top: 30%; left: 70%; animation-delay: 4s;"></div>
+        <div class="particle" style="top: 80%; left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="top: 45%; left: 50%; animation-delay: 3s;"></div>
+        <div class="particle" style="top: 10%; left: 90%; animation-delay: 5s;"></div>
+    </section>
+    
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Academic Projects & Experience</h2>
+            <p style="text-align: center; margin-bottom: 2em; font-size: 1.1em; color: #C0C0C0;">
+                Showcasing my academic achievements and practical experiences.
+            </p>
+            <div class="projects-grid">
+                <!-- Project Card 1: Fuel Price Time Series Forecasting -->
+                <div class="project-card">
+                    <h3>Fuel Price Time Series Forecasting</h3>
+                    <p data-original-description="A 6-month project focusing on time series forecasting of fuel prices. Utilized Python for data analysis and machine learning algorithms.">A 6-month project focusing on time series forecasting of fuel prices. Utilized Python for data analysis and machine learning algorithms. 
+                    <br>CURRENTLY IN PROGRESS</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Time Series</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Data Analysis</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Flight Scheduling Optimization using Genetic Algorithm (GA) -->
+                <div class="project-card">
+                    <h3>Flight Scheduling Optimization (GA)</h3>
+                    <img src="https://assets.onecompiler.app/43ky4y72u/43kyffrmv/download%20(2).png" alt="GA Optimization Results">
+                    <img src="https://assets.onecompiler.app/43ky4y72u/43kyffrmv/07.06.2025_00.03.02_REC.png" alt="Optimized Schedule for Flights">
+                    <p data-original-description="Optimized flight scheduling using Genetic Algorithms, a project completed in 3 weeks. Showcases expertise in optimization models and algorithm implementation.">Optimized flight scheduling using Genetic Algorithms, a project completed in 3 weeks. Showcases familiarity in optimization models and algorithm implementation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Genetic Algorithm</span>
+                        <span class="tech-tag">Optimization</span>
+                        <span class="tech-tag">Algorithms</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+
+                <!-- Project Card for Hotel Revenue Decision Support System -->
+                <div class="project-card">
+                    <h3>Hotel Revenue Decision Support System</h3>
+                    <img src="https://assets.onecompiler.app/43ky4y72u/43kyffrmv/07.06.2025_00.19.10_REC.png" alt="Hotel DSS Interface">
+                    <p data-original-description="">By utilizing the Hotel Booking Demand Dataset which includes information such as reservation statuses, guest demographics, booking behaviors and cancellation patterns, the DSS provides a clear picture of past and current trends. This enables hotels to better manage room pricing, promotional offers and resource allocation. Completed in 1 month</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Decision Support System</span>
+                        <span class="tech-tag">Data Analysis</span>
+                        <span class="tech-tag">Kaggle</span>
+                        <span class="tech-tag">Google Colab</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+                
+                <!-- Project Card Salary Class -->
+                <div class="project-card">
+                    <h3>Salary Class Neural Network</h3>
+                    <img src='https://assets.onecompiler.app/43ky4y72u/43kyffrmv/07.06.2025_19.36.56_REC.png' alt="Neural Network Results">
+                    <p data-original-description="A food ordering application developed using Adalo, demonstrating quick prototyping and no-code development skills.">The trained neural network effectively classifies salaries into their respective categories with high accuracy. The project successfully demonstrates the ability to build, train, and optimize a deep learning model for a real-world classification task, highlighting expertise in machine learning workflows and performance tuning. The comparison of various optimizers provides valuable insights into their respective strengths and weaknesses in this context.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Neural Network</span>
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Classification</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+
+                 <!-- New Project Card: Krung Krang Food Ordering App -->
+                 <div class="project-card">
+                    <h3>Krung Krang Food Ordering App</h3>
+                    <p data-original-description="A food ordering application developed using Adalo, demonstrating quick prototyping and no-code development skills.">A food ordering application developed using Adalo, demonstrating quick prototyping and no-code development skills. Completed in 2 weeks. Demo button available below</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Adalo</span>
+                        <span class="tech-tag">No-Code Dev</span>
+                        <span class="tech-tag">Mobile App</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://rania-darwisyahs-team.adalo.com/food-ordering" class="project-link" target="_blank" rel="noopener">Live Demo</a>
+                    </div>
+                </div>
+
+                        <!-- Project Card 2: Rylis Recipe Application (MIT App Inventor) -->
+                <div class="project-card">
+                  <h3>Rylis Recipe Application</h3>
+                  <img src="https://assets.onecompiler.app/43ky4y72u/43kyffrmv/123.png" alt="Rylis Recipe App User Flow Diagram">
+                  <p data-original-description="Developed a recipe application using MIT App Inventor. Completed within 1 month, demonstrating skills in app development and problem-solving.">
+                     Developed a comprehensive recipe application using MIT App Inventor featuring user authentication, recipe browsing, and detailed recipe viewing. The user flow diagram above illustrates the complete navigation structure from sign-up through recipe management. 
+                     <strong>Note: For simulation is unavailable as it is required to download and use MIT App Inventor to test the application.</strong>
+                  </p>
+                  <div class="tech-stack">
+                      <span class="tech-tag">MIT App Inventor</span>
+                      <span class="tech-tag">Mobile App Dev</span>
+                      <span class="tech-tag">UI/UX Design</span>
+                      <span class="tech-tag">User Flow Design</span>
+                  </div>
+                  <div class="project-links">
+                  </div>
+            </div>
+            
+                            <!-- Project Card 4: Makerlab Uitm Intern Experience -->
+                <div class="project-card">
+                    <h3>3D Modeling & Printing</h3>
+                    <img src='https://assets.onecompiler.app/43ky4y72u/43kyffrmv/Untitled%20design%20(8)1.png' style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                    <p data-original-description="A food ordering application developed using Adalo, demonstrating quick prototyping and no-code development skills.">Images above are prototype of custom design for lanyard card and a coaster by using Tinkercard for modeling.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">3D Printing</span>
+                        <span class="tech-tag">Tinkercad</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+                
+                   <!-- Project Card Cisco Networking -->
+                <div class="project-card">
+                    <h3>Cisco Networking Simulation</h3>
+                    <img src='https://assets.onecompiler.app/43ky4y72u/43kyffrmv/Screenshot%20(14).png' style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                    <p data-original-description="A food ordering application developed using Adalo, demonstrating quick prototyping and no-code development skills."> This project simulates a functional and secure multi-floor network for a telecommunications shop, showcasing practical experience in designing and configuring complex network environments. It demonstrates a strong understanding of core networking concepts, including VLANs, routing, security, even firewall and the effective use of Cisco Packet Tracer for network simulation and validation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Cisco Packet</span>
+                        <span class="tech-tag">Networking</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+    </section>
+    
+ 
+
+      <!-- Updated Extracurricular Activities Section -->
+    <section id="extracurricular" class="extracurricular-activities">
+        <div class="container">
+            <h2 class="section-title">Extracurricular Activities</h2>
+            <p style="text-align: center; margin-bottom: 2em; font-size: 1.1em; color: #C0C0C0;">
+                My involvement in various activities outside of academics, showcasing leadership and teamwork.
+            </p>
+            <div class="extracurricular-grid">
+                <!-- Extracurricular Card 1 -->
+                <div class="extracurricular-card">
+                    <h3>Representative of Welfare Secretariat</h3>
+                    <p>Shah Alam, Universiti Teknologi MARA Shah Alam - 2024</p>
+                </div>
+
+                <!-- Extracurricular Card 2 -->
+                <div class="extracurricular-card">
+                    <h3>Head of Welfare Exco</h3>
+                    <p>Artificial Intelligence Society (AIS) - 2023-2024</p>
+                </div>
+
+                <!-- Extracurricular Card 3 -->
+                <div class="extracurricular-card">
+                    <h3>Program Director for A.I Nak Raya</h3>
+                    <p>Artificial Intelligence Society (AIS) - 2024</p>
+                </div>
+
+                <!-- Extracurricular Card 4 -->
+                <div class="extracurricular-card">
+                    <h3>Assistant Program Director Orient: Industry, Alumni & AI</h3>
+                    <p>Artificial Intelligence Society (AIS) - 2024</p>
+                </div>
+
+                <!-- Extracurricular Card 5 -->
+                <div class="extracurricular-card">
+                    <h3>Robotics Tutor</h3>
+                    <p>Jazro - 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="resume" class="resume">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-card">
+                <h3>View My Resume</h3>
+                <p>Get an overview of my experience, skills, and qualifications. Available for online viewing.</p>
+                <div class="resume-buttons">
+                    <!-- Note: For actual deployment, replace "path/to/your/RESUME_Rania_Darwisyah.pdf" with the public URL where your resume PDF is hosted. -->
+                    <a href="path/to/your/RESUME_Rania_Darwisyah.pdf"</a>
+                    <a href="#" class="resume-btn view-btn" id="viewBtn">👁️ View Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="social-links">
+      
+            </div>
+            <p>&copy; 2025 Rania Darwisyah. All rights reserved.</p>
+            <p>Built with passion and attention to detail</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrolled = window.pageYOffset;
+            const opacity = Math.min(scrolled / 100, 0.4); /* Max opacity increased for better visibility on dark background */
+            header.style.background = `rgba(0, 0, 0, ${opacity})`;
+        });
+
+        // Project card hover effects for dynamic interaction
+        document.querySelectorAll('.project-card, .extracurricular-card').forEach(card => { // Apply to certificate cards too
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.01)'; /* Subtle lift and scale */
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+      
+
+        document.getElementById('viewBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // The content fetched from the PDF (as raw text)
+            const resumeTextContent = `
+--- PAGE 1 ---
+
+
+RANIA DARWISYAH BINTI
+MOHAMAD ZAFUAN SUBHI
+
+011-28377678
+
+raniadarwisyah5@gmail.com
+
+Expected Internship Period:
+
+15 September 2025 - 19 December 2025
+
+CAREER OBJECTIVE
+
+A final-year student pursuing a degree in Information Systems (Hons.)
+Intelligent
+Systems Engineering, with a strong passion for Machine Learning and Data Science.
+Currently seeking an internship opportunity to apply my technical knowledge, enhance
+my knowledge in Machine Learning and contribute to real-world Al solutions.
+
+EDUCATION
+
+2015-2019
+
+SMK Bukit Indah, Sijil Pelajaran Malaysia (SPM)
+
+2021-2023
+
+Universiti Teknologi MARA Perak, Branch Tapah, Diploma of Computer Science
+
+2023-2025
+
+Universiti Teknologi MARA Shah Alam, Bachelor of Information Systems (HONS.)
+Intelligent Systems Engineering
+
+
+--- PAGE 2 ---
+
+EXPERIENCE
+
+2020 Mynews Retail, Kuala Lumpur - Staff
+
+Handled payment processing, issued receipts for customer purchases, tracked product
+inventory on a daily, weekly, and monthly basis, and resolved customer issues by
+identifying problems and providing effective solutions.
+
+2023 Makerlab Uitm Puncak Alam, Selangor - Intern
+
+Gained hands-on experience in 3D printing, learned Python programming and the basics
+of Linux, explored Arduino through self-learning, developing skills in programming,
+circuit design, and sensor integration, and showcased projects as an exhibitor at Creations
+de UiTM, UiTM Dengkil.
+
+ACADEMIC PROJECTS
+
+Fuel Price Time Series Forecasting - 6 months to complete
+
+• Networking Computer (Cisco) - 4 months to complete
+Arduino - 4 months to complete
+
+Rylis Recipe Application (MIT App Inventor) - 1 month to complete
+
+Salary Class Machine Learning - 1 month to complete
+
+Hotel Revenue Decision Support System - 1 month to complete
+
+Flight Scheduling Optimization using Genetic Algorithm (GA) - 3 weeks to
+complete
+
+• Krung Krang Food Ordering App (Adalo) - 2 weeks to complete
+3D Printing (Tinkercad) - 1 week to complete
+
+
+--- PAGE 3 ---
+
+Extracurricular Activities
+
+Representative of Welfare Secretariat Shah Alam, Universiti Teknologi MARA
+Shah Alam - 2024
+
+Head of Welfare Exco, Artificial Intelligence Society (AIS) - 2023-2024
+
+Program Director for A.I Nak Raya, Artificial Intelligence Society (AIS) - 2024
+
+• Assistant Program Director Orient: Industry, Alumni & AI, Artificial Intelligence
+Society (AIS) - 2024
+
+Robotics Tutor, Jazro - 2024
+
+SKILLS
+
+• Familiarity: Python, data analysis, and machine learning algorithms.
+
+Hands-on experience: Time series forecasting, optimization models, and
+Al-driven applications.
+
+Tools and frameworks: NumPy, Pandas, Scikit-learn, and TensorFlow.
+
+• Strong analytical and problem-solving skills, with a focus on real-world AI
+applications.
+
+REFERENCES
+
+DR. SITI AZMA JUSOH @ YUSOF
+
+Senior Lecturer (DM51) Faculty of Pharmacy, Universiti Teknologi MARA, Puncak
+Alam
+
+Email: sitiazma@uitm.edu.my
+
+Contact no: +603-3258 4684 (mobile)
+            `;
+            
+            // Create a new window to display the resume content
+            const resumeWindow = window.open('', '_blank');
+            resumeWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Rania Darwisyah - Resume</title>
+                    <style>
+                        body { font-family: 'Inter', Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #333; }
+                        h1 { color: #1A1A1A; border-bottom: 2px solid #555; padding-bottom: 0.5rem; }
+                        h2 { color: #333; margin-top: 2rem; }
+                        .contact { background: #F0F0F0; padding: 1rem; border-radius: 5px; margin-bottom: 1.5rem;}
+                        .section { margin-bottom: 2rem; }
+                        ul { padding-left: 1.5rem; }
+                        li { margin-bottom: 0.5rem; }
+                        strong { font-weight: 600; }
+                    </style>
+                </head>
+                <body>
+                    <h1>RANIA DARWISYAH BINTI MOHAMAD ZAFUAN SUBHI - Resume</h1>
+                    
+                    <div class="contact">
+                        <strong>Contact Information</strong><br>
+                        Email: raniadarwisyah5@gmail.com<br>
+                        Phone: 011-28377678<br>
+                        Expected Internship Period: 15 September 2025 - 19 December 2025
+                    </div>
+                    
+                    <div class="section">
+                        <h2>Career Objective</h2>
+                        <p>A final-year student pursuing a degree in Information Systems (Hons.) Intelligent Systems Engineering, with a strong passion for Machine Learning and Data Science. Currently seeking an internship opportunity to apply my technical knowledge, enhance my knowledge in Machine Learning and contribute to real-world AI solutions.</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Education</h2>
+                        <p><strong>2015-2019:</strong> SMK Bukit Indah, Sijil Pelajaran Malaysia (SPM)</p>
+                        <p><strong>2021-2023:</strong> Universiti Teknologi MARA Perak, Branch Tapah, Diploma of Computer Science</p>
+                        <p><strong>2023-2025:</strong> Universiti Teknologi MARA Shah Alam, Bachelor of Information Systems (HONS.) Intelligent Systems Engineering</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Experience</h2>
+                        <h3>2020 Mynews Retail, Kuala Lumpur - Staff</h3>
+                        <ul>
+                            <li>Handled payment processing, issued receipts for customer purchases.</li>
+                            <li>Tracked product inventory on a daily, weekly, and monthly basis.</li>
+                            <li>Resolved customer issues by identifying problems and providing effective solutions.</li>
+                        </ul>
+                        <h3>2023 Makerlab Uitm Puncak Alam, Selangor - Intern</h3>
+                        <ul>
+                            <li>Gained hands-on experience in 3D printing.</li>
+                            <li>Learned Python programming and the basics of Linux.</li>
+                            <li>Explored Arduino through self-learning, developing skills in programming, circuit design, and sensor integration.</li>
+                            <li>Showcased projects as an exhibitor at Creations de UiTM, UiTM Dengkil.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <h2>Academic Projects</h2>
+                        <ul>
+                            <li><strong>Fuel Price Time Series Forecasting</strong> - 6 months to complete.</li>
+                            <li><strong>Networking Computer (Cisco)</strong> - 4 months to complete.</li>
+                            <li><strong>Arduino</strong> - 4 months to complete.</li>
+                            <li><strong>Rylis Recipe Application (MIT App Inventor)</strong> - 1 month to complete.</li>
+                            <li><strong>Salary Class Machine Learning</strong> - 1 month to complete.</li>
+                            <li><strong>Hotel Revenue Decision Support System</strong> - 1 month to complete.</li>
+                            <li><strong>Flight Scheduling Optimization using Genetic Algorithm (GA)</strong> - 3 weeks to complete.</li>
+                            <li><strong>Krung Krang Food Ordering App (Adalo)</strong> - 2 weeks to complete.</li>
+                            <li><strong>3D Printing (Tinkercad)</strong> - 1 week to complete.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <h2>Skills</h2>
+                        <ul>
+                            <li>Familiarity: Python, data analysis, and machine learning algorithms.</li>
+                            <li>Hands-on experience: Time series forecasting, optimization models, and AI-driven applications.</li>
+                            <li>Tools and frameworks: NumPy, Pandas, Scikit-learn, and TensorFlow.</li>
+                            <li>Strong analytical and problem-solving skills, with a focus on real-world AI applications.</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h2>References</h2>
+                        <p>DR. SITI AZMA JUSOH @ YUSOF</p>
+                        <p>Senior Lecturer (DM51) Faculty of Pharmacy, Universiti Teknologi MARA, Puncak Alam</p>
+                        <p>Email: sitiazma@uitm.edu.my</p>
+                        <p>Contact no: +603-3258 4684 (mobile)</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            resumeWindow.document.close();
+        });
+
+        // Add dynamic particle movement for a subtle background animation effect
+        setInterval(() => {
+            document.querySelectorAll('.particle').forEach(particle => {
+                const randomX = Math.random() * 100; /* Random X position within viewport */
+                const randomY = Math.random() * 100; /* Random Y position within viewport */
+                particle.style.left = randomX + '%';
+                particle.style.top = randomY + '%';
+            });
+        }, 10000); /* Update particle positions every 10 seconds */
+
+
+        // LLM Integration Logic
+        const llmModal = document.getElementById('llmModal');
+        const llmContent = document.getElementById('llmContent');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const enhanceButtons = document.querySelectorAll('.llm-enhance-btn');
+
+        closeModalBtn.addEventListener('click', () => {
+            llmModal.style.display = 'none'; // Hide the modal
+        });
+
+        // Close modal if user clicks outside of it
+        window.addEventListener('click', (event) => {
+            if (event.target === llmModal) {
+                llmModal.style.display = 'none';
+            }
+        });
+
+        enhanceButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                llmModal.style.display = 'block'; // Show the modal
+                llmContent.innerHTML = '<div class="loading-spinner"></div><p style="text-align: center; margin-top: 10px;">Generating amazing description...</p>'; // Show loading
+
+                const projectCard = this.closest('.project-card');
+                const projectTitle = projectCard.querySelector('h3').textContent;
+                const projectDescription = projectCard.querySelector('p').getAttribute('data-original-description'); // Get original description
+
+                const prompt = `Refine the following project description for a developer portfolio. Make it more impactful, professional, and highlight key achievements/technologies. The new description should be concise but engaging, suitable for a professional portfolio.
+Project Title: ${projectTitle}
+Current Description: ${projectDescription}`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Leave this as-is; Canvas will automatically provide it.
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const generatedText = result.candidates[0].content.parts[0].text;
+                        llmContent.innerHTML = `<p>${generatedText}</p>`; // Display generated text
+                    } else {
+                        llmContent.innerHTML = `<p>Error: Could not generate description. Please try again.</p>`;
+                        console.error("Gemini API response structure unexpected:", result);
+                    }
+                } catch (error) {
+                    llmContent.innerHTML = `<p>Error: Failed to connect to the AI service. Please try again later.</p>`;
+                    console.error("Error calling Gemini API:", error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
