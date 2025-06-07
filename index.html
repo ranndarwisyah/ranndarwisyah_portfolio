@@ -182,6 +182,17 @@
             gap: 2rem;
             margin-top: 2rem;
         }
+        
+                .project-card img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         /* Individual project card styling */
         .project-card, .certificate-card {
@@ -216,7 +227,22 @@
             color: #C0C0C0; /* Slightly darker white for body text */
             flex-grow: 1; /* Allow paragraph to take available space */
         }
-
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-bottom: 1rem;
+        }
+        
+        .image-grid img {
+            width: 100%;
+            max-width: none;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0;
+        }
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -239,7 +265,27 @@
             gap: 1rem;
             margin-top: 1.5rem;
         }
-
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .image-grid img {
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-grid img {
+                height: 180px;
+            }
+        }
         .project-link, .llm-enhance-btn, .certificate-link { /* Style for new LLM button and certificate links */
             padding: 0.5rem 1rem;
             background-color: #333333; /* Dark gray button */
@@ -642,7 +688,7 @@
                 <div class="project-card">
                   <h3>Rylis Recipe Application</h3>
                   <!-- Replace the placeholder with your actual image -->
-                  <img src="https://assets.onecompiler.app/43ky4y72u/43kyffrmv/thelong%20wait%20is%20over.png" alt="Rylis Recipe App User Flow Diagram" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                  <img src="https://assets.onecompiler.app/43ky4y72u/43kyffrmv/123.png" alt="Rylis Recipe App User Flow Diagram" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
                   <p data-original-description="Developed a recipe application using MIT App Inventor. Completed within 1 month, demonstrating skills in app development and problem-solving.">
                      Developed a comprehensive recipe application using MIT App Inventor featuring user authentication, recipe browsing, and detailed recipe viewing. The user flow diagram above illustrates the complete navigation structure from sign-up through recipe management. 
                      <strong>Note: For simulation is unavailable as it is required to download and use MIT App Inventor to test the application.</strong>
@@ -660,10 +706,12 @@
                             <!-- Project Card 4: Makerlab Uitm Intern Experience -->
                 <div class="project-card">
                     <h3>3D Modeling & Printing</h3>
+                    <div class="image-grid">
                     <img src='https://assets.onecompiler.app/43ky4y72u/43kyffrmv/Screenshot%20(13).png' style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
                     <img src='https://assets.onecompiler.app/43ky4y72u/43kyffrmv/1680839869840%20(2).jpg' style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
                     <img src='https://assets.onecompiler.app/43ky4y72u/43kyffrmv/Screenshot%20(19).png' style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
                     <img src='https://assets.onecompiler.app/43ky4y72u/43kyffrmv/1681114278135%20(2).jpg' style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                    </div>
                     <p data-original-description="A food ordering application developed using Adalo, demonstrating quick prototyping and no-code development skills.">Images above are prototype of custom design for lanyard card and a coaster by using Tinkercard for modeling.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">3D Printing</span>
