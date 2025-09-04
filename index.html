@@ -649,18 +649,158 @@
 
                 <!-- Project Card for Hotel Revenue Decision Support System -->
                 <div class="project-card">
-                    <h3>Hotel Revenue Decision Support System</h3>
-                    <img src="https://assets.onecompiler.app/43ky4y72u/43kyffrmv/07.06.2025_00.19.10_REC.png" alt="Hotel DSS Interface">
-                    <p data-original-description="">By utilizing the Hotel Booking Demand Dataset which includes information such as reservation statuses, guest demographics, booking behaviors and cancellation patterns, the DSS provides a clear picture of past and current trends. This enables hotels to better manage room pricing, promotional offers and resource allocation. Completed in 1 month</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Decision Support System</span>
-                        <span class="tech-tag">Data Analysis</span>
-                        <span class="tech-tag">Kaggle</span>
-                        <span class="tech-tag">Google Colab</span>
-                    </div>
-                    <div class="project-links">
-                    </div>
-                </div>
+                        <h3>Hotel Revenue Decision Support System</h3>
+                        
+                        <!-- Embedded DSS Prototype -->
+                        <div style="width: 100%; height: 400px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; overflow: hidden; margin-bottom: 1rem; background: #f8f9fa;">
+                            <!-- Mini DSS Interface -->
+                            <div style="padding: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                                <h4 style="margin: 0; font-size: 14px; font-weight: bold;">Hotel Revenue Management DSS</h4>
+                            </div>
+                            
+                            <div style="display: flex; height: calc(100% - 50px);">
+                                <!-- Controls Panel -->
+                                <div style="width: 30%; padding: 12px; background: white; border-right: 1px solid #e0e0e0;">
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="font-size: 11px; color: #666; display: block; margin-bottom: 4px;">Lead Time (days)</label>
+                                        <input type="range" id="hotelLeadTime" min="0" max="90" value="30" style="width: 100%; height: 4px;">
+                                        <div id="hotelLeadTimeValue" style="font-size: 10px; color: #888; margin-top: 2px;">30 days</div>
+                                    </div>
+                                    
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="font-size: 11px; color: #666; display: block; margin-bottom: 4px;">Adults</label>
+                                        <input type="range" id="hotelAdults" min="1" max="4" value="2" style="width: 100%; height: 4px;">
+                                        <div id="hotelAdultsValue" style="font-size: 10px; color: #888; margin-top: 2px;">2</div>
+                                    </div>
+                                    
+                                    <div style="margin-bottom: 12px;">
+                                        <label style="font-size: 11px; color: #666; display: block; margin-bottom: 4px;">Season</label>
+                                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                                            <label style="font-size: 10px; display: flex; align-items: center;">
+                                                <input type="radio" name="hotelSeason" value="peak" checked style="margin-right: 4px;">
+                                                Peak
+                                            </label>
+                                            <label style="font-size: 10px; display: flex; align-items: center;">
+                                                <input type="radio" name="hotelSeason" value="off-peak" style="margin-right: 4px;">
+                                                Off-Peak
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Results Panel -->
+                                <div style="width: 70%; padding: 12px; background: #f8f9fa;">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                                        <div style="background: white; padding: 8px; border-radius: 4px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                            <div style="font-size: 9px; color: #666; margin-bottom: 4px;">Recommended Price</div>
+                                            <div id="hotelPrice" style="font-size: 14px; font-weight: bold; color: #10b981;">$185.00</div>
+                                        </div>
+                                        <div style="background: white; padding: 8px; border-radius: 4px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                            <div style="font-size: 9px; color: #666; margin-bottom: 4px;">Occupancy</div>
+                                            <div id="hotelOccupancy" style="font-size: 14px; font-weight: bold; color: #3b82f6;">65.0%</div>
+                                        </div>
+                                        <div style="background: white; padding: 8px; border-radius: 4px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                            <div style="font-size: 9px; color: #666; margin-bottom: 4px;">Strategy</div>
+                                            <div id="hotelStrategy" style="font-size: 10px; font-weight: bold; color: #ef4444;">Premium</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Chart Placeholders -->
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                                        <div style="background: white; padding: 8px; border-radius: 4px; height: 80px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 9px; color: #666; margin-bottom: 4px;">Demand Forecast</div>
+                                                <div style="width: 60px; height: 40px; background: linear-gradient(45deg, #e5e7eb, #d1d5db); border-radius: 2px;"></div>
+                                            </div>
+                                        </div>
+                                        <div style="background: white; padding: 8px; border-radius: 4px; height: 80px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 9px; color: #666; margin-bottom: 4px;">Revenue Potential</div>
+                                                <div style="width: 60px; height: 40px; background: linear-gradient(45deg, #e5e7eb, #d1d5db); border-radius: 2px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Explanation -->
+                                    <div style="background: white; padding: 8px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                        <div style="font-size: 9px; color: #666; margin-bottom: 4px;">Price Explanation</div>
+                                        <div id="hotelExplanation" style="font-size: 9px; color: #374151;">Peak season premium pricing applied for current booking parameters.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <script>
+                                (function() {
+                                    const leadTimeSlider = document.getElementById('hotelLeadTime');
+                                    const adultsSlider = document.getElementById('hotelAdults');
+                                    const seasonRadios = document.querySelectorAll('input[name="hotelSeason"]');
+                                    
+                                    const leadTimeValue = document.getElementById('hotelLeadTimeValue');
+                                    const adultsValue = document.getElementById('hotelAdultsValue');
+                                    const priceDisplay = document.getElementById('hotelPrice');
+                                    const occupancyDisplay = document.getElementById('hotelOccupancy');
+                                    const strategyDisplay = document.getElementById('hotelStrategy');
+                                    const explanationDisplay = document.getElementById('hotelExplanation');
+                                    
+                                    function updateHotelDSS() {
+                                        if (!leadTimeSlider || !adultsSlider) return;
+                                        
+                                        const leadTime = parseInt(leadTimeSlider.value);
+                                        const adults = parseInt(adultsSlider.value);
+                                        const season = document.querySelector('input[name="hotelSeason"]:checked')?.value || 'peak';
+                                        
+                                        leadTimeValue.textContent = leadTime + ' days';
+                                        adultsValue.textContent = adults;
+                                        
+                                        let price = 150 + (adults * 15) + (leadTime * -0.8);
+                                        let strategy = 'Standard';
+                                        let explanation = 'Standard pricing applied.';
+                                        const occupancy = Math.min(95, 40 + (adults * 8) + Math.random() * 10);
+                                        
+                                        if (leadTime > 60) {
+                                            price *= 0.85;
+                                            strategy = 'Early Bird';
+                                            explanation = 'Early booking discount (15%) applied.';
+                                        } else if (leadTime < 7) {
+                                            price *= occupancy > 80 ? 1.25 : 0.8;
+                                            strategy = occupancy > 80 ? 'Premium' : 'Last-minute';
+                                            explanation = occupancy > 80 ? 'Premium pricing due to high demand.' : 'Last-minute discount offered.';
+                                        }
+                                        
+                                        if (season === 'peak') {
+                                            price *= 1.2;
+                                            strategy = 'Peak Premium';
+                                            explanation = 'Peak season surcharge applied.';
+                                        }
+                                        
+                                        price = Math.max(80, Math.min(price, 450));
+                                        
+                                        priceDisplay.textContent = '$' + price.toFixed(2);
+                                        occupancyDisplay.textContent = occupancy.toFixed(1) + '%';
+                                        strategyDisplay.textContent = strategy;
+                                        explanationDisplay.textContent = explanation;
+                                    }
+                                    
+                                    if (leadTimeSlider) leadTimeSlider.addEventListener('input', updateHotelDSS);
+                                    if (adultsSlider) adultsSlider.addEventListener('input', updateHotelDSS);
+                                    seasonRadios.forEach(radio => radio.addEventListener('change', updateHotelDSS));
+                                    
+                                    // Initial update
+                                    setTimeout(updateHotelDSS, 100);
+                                })();
+                            </script>
+                        </div>
+    
+    <p data-original-description="By utilizing the Hotel Booking Demand Dataset which includes information such as reservation statuses, guest demographics, booking behaviors and cancellation patterns, the DSS provides a clear picture of past and current trends. This enables hotels to better manage room pricing, promotional offers and resource allocation. Completed in 1 month">By utilizing the Hotel Booking Demand Dataset which includes information such as reservation statuses, guest demographics, booking behaviors and cancellation patterns, the DSS provides a clear picture of past and current trends. This enables hotels to better manage room pricing, promotional offers and resource allocation. Completed in 1 month</p>
+    <div class="tech-stack">
+        <span class="tech-tag">Decision Support System</span>
+        <span class="tech-tag">Data Analysis</span>
+        <span class="tech-tag">Kaggle</span>
+        <span class="tech-tag">Google Colab</span>
+    </div>
+    <div class="project-links">
+    </div>
+</div>
                 
                 <!-- Project Card Salary Class -->
                 <div class="project-card">
@@ -1128,4 +1268,5 @@ Current Description: ${projectDescription}`;
     </script>
 </body>
 </html>
+
 
