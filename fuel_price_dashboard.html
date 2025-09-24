@@ -1,0 +1,275 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Price LSTM Analysis Dashboard Mock-Up</title>
+    <style>
+        /* General body and container styling to match the portfolio's dark theme */
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1A1A1A; /* Deep charcoal background */
+            color: #E0E0E0; /* Soft white text color for readability */
+        }
+        .container {
+            padding: 2em;
+            margin: 1em auto;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.05); /* Transparent white background */
+            backdrop-filter: blur(6px); /* Blur effect */
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle light border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        /* Hover effect for a subtle lift */
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+        h1, h2, h3 {
+            color: #FFFFFF; /* Pure white headings */
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+        }
+        p {
+            text-align: center;
+            color: #C0C0C0; /* Slightly darker white for body text */
+        }
+        .card {
+            margin-bottom: 2em;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-header {
+            background-color: #333333; /* Darker gray header */
+            color: white;
+            padding: 0.8em;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-bottom: 1em;
+        }
+        .dropdown {
+            padding: 0.8em;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1em;
+            margin-bottom: 1em;
+            background-color: #2A2A2A; /* Darker background for dropdown */
+            color: #E0E0E0;
+        }
+        .dropdown option {
+            background-color: #2A2A2A;
+        }
+        .chart-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.08); /* Lighter transparent placeholder */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #999999;
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        .table-container {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden; /* Ensures table corners are rounded */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 1em;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th {
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .disclaimer {
+            margin-top: 2em;
+            padding: 1.5em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.03);
+            text-align: center;
+        }
+        .disclaimer p {
+            margin: 0.5em 0;
+            line-height: 1.4;
+            font-size: 0.9em;
+            color: #999999;
+        }
+        .disclaimer strong {
+            color: #E0E0E0;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.8em 1.5em;
+            background-color: #333333;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px; /* Pill shape */
+            margin-bottom: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #555555;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 0.5em;
+            }
+            .card {
+                padding: 1em;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Portfolio</a>
+        <h1>⛽ Fuel Price LSTM Analysis Dashboard Mock-Up</h1>
+        <p>Analyze Historical Data and LSTM Model Predictions</p>
+
+        <div class="card">
+            <div class="card-header">🌍 Select Country for Analysis</div>
+            <select class="dropdown">
+                <option value="">Choose a country to analyze...</option>
+                <option value="USA">🏳️ USA</option>
+                <option value="UK">🏳️ UK</option>
+                <option value="Germany">🏳️ Germany</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <div class="card-header">📈 Historical Actual vs. LSTM Forecasted (Time Series)</div>
+            <select class="dropdown">
+                <option value="">Select Fuel Type</option>
+                <option value="Gasoline one week">Gasoline One Week</option>
+                <option value="Gasoline three months">Gasoline Three Months</option>
+                <option value="Diesel one week">Diesel One Week</option>
+                <option value="Diesel three months">Diesel Three Months</option>
+            </select>
+            <div class="chart-placeholder">
+                [Time Series Chart: Historical vs. Forecasted Prices]
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">📝 Detailed Comparison: Latest Current Data vs LSTM Predictions</div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fuel Type</th>
+                            <th>Current Price Change (%)</th>
+                            <th>LSTM Forecasted (%)</th>
+                            <th>Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gasoline One Week</td>
+                            <td style="color: #008000;">2.50%</td>
+                            <td style="color: #008000;">2.45%</td>
+                            <td>2025-09-01</td>
+                        </tr>
+                        <tr>
+                            <td>Gasoline Three Months</td>
+                            <td style="color: #ff0000;">-1.20%</td>
+                            <td style="color: #ff0000;">-1.15%</td>
+                            <td>2025-09-01</td>
+                        </tr>
+                        <tr>
+                            <td>Diesel One Week</td>
+                            <td style="color: #008000;">1.80%</td>
+                            <td style="color: #008000;">1.75%</td>
+                            <td>2025-09-01</td>
+                        </tr>
+                        <tr>
+                            <td>Diesel Three Months</td>
+                            <td>0.00%</td>
+                            <td>0.05%</td>
+                            <td>2025-09-01</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            <p><strong>📊 Data Source:</strong> Global Fuel Price Benchmark Database</p>
+            <p><strong>🤖 Model:</strong> LSTM Neural Network for Time Series Prediction</p>
+            <p><strong>⚠️ Disclaimer:</strong> This dashboard compares historical fuel price data with LSTM model predictions. The LSTM model was trained on historical data and predictions may not reflect actual future prices. This dashboard is designed for analytical and educational purposes.</p>
+            <p><small>© 2025 Fuel Price Analysis Dashboard</small></p>
+        </div>
+    </div>
+</body>
+</html>

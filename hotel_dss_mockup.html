@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel DSS Mock-up</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #1A1A1A;
+            color: #E0E0E0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .mockup-container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #333333;
+            color: #E0E0E0;
+            text-decoration: none;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            transform: scale(1.03);
+            background-color: #555555;
+        }
+        .mockup-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .mockup-header h1 {
+            font-size: 2rem;
+            color: #FFFFFF;
+        }
+        .mockup-header p {
+            color: #C0C0C0;
+        }
+        /* Styles from your original HTML */
+        .dss-interface {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        .dss-header {
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .dss-header h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .dss-body {
+            display: flex;
+            height: calc(100% - 50px);
+        }
+        .dss-controls {
+            width: 30%;
+            padding: 12px;
+            background: white;
+            border-right: 1px solid #e0e0e0;
+        }
+        .dss-controls label {
+            font-size: 11px;
+            color: #666;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .dss-controls input {
+            width: 100%;
+            height: 4px;
+        }
+        .dss-results {
+            width: 70%;
+            padding: 12px;
+            background: #f8f9fa;
+        }
+        .dss-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .dss-metric-card {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .dss-metric-label {
+            font-size: 9px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        .dss-metric-value {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .dss-chart-placeholder {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .dss-explanation {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .dss-explanation-text {
+            font-size: 9px;
+            color: #374151;
+        }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <a href="index.html" class="back-button">← Back to Portfolio</a>
+        <div class="mockup-header">
+            <h1>Hotel Revenue Decision Support System</h1>
+            <p>Mock-up interface for demonstration purposes.</p>
+        </div>
+        <div class="dss-interface" style="height: 400px;">
+            <div class="dss-header">
+                <h4>Hotel Revenue Management DSS</h4>
+            </div>
+            <div class="dss-body">
+                <div class="dss-controls">
+                    <div style="margin-bottom: 12px;">
+                        <label>Lead Time (days)</label>
+                        <input type="range" id="hotelLeadTime" min="0" max="90" value="30">
+                        <div id="hotelLeadTimeValue" style="font-size: 10px; color: #888;">30 days</div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label>Adults</label>
+                        <input type="range" id="hotelAdults" min="1" max="4" value="2">
+                        <div id="hotelAdultsValue" style="font-size: 10px; color: #888;">2</div>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        <label>Season</label>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <label style="font-size: 10px; display: flex; align-items: center;">
+                                <input type="radio" name="hotelSeason" value="peak" checked>
+                                Peak
+                            </label>
+                            <label style="font-size: 10px; display: flex; align-items: center;">
+                                <input type="radio" name="hotelSeason" value="off-peak">
+                                Off-Peak
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="dss-results">
+                    <div class="dss-metrics">
+                        <div class="dss-metric-card">
+                            <div class="dss-metric-label">Recommended Price</div>
+                            <div id="hotelPrice" style="font-size: 14px; font-weight: bold; color: #10b981;">$185.00</div>
+                        </div>
+                        <div class="dss-metric-card">
+                            <div class="dss-metric-label">Occupancy</div>
+                            <div id="hotelOccupancy" style="font-size: 14px; font-weight: bold; color: #3b82f6;">65.0%</div>
+                        </div>
+                        <div class="dss-metric-card">
+                            <div class="dss-metric-label">Strategy</div>
+                            <div id="hotelStrategy" style="font-size: 10px; font-weight: bold; color: #ef4444;">Premium</div>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                        <div class="dss-chart-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 9px; color: #666;">Demand Forecast</div>
+                                <div style="width: 60px; height: 40px; background: linear-gradient(45deg, #e5e7eb, #d1d5db); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                        <div class="dss-chart-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 9px; color: #666;">Revenue Potential</div>
+                                <div style="width: 60px; height: 40px; background: linear-gradient(45deg, #e5e7eb, #d1d5db); border-radius: 2px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dss-explanation">
+                        <div class="dss-metric-label">Price Explanation</div>
+                        <div id="hotelExplanation" style="font-size: 9px; color: #374151;">Peak season premium pricing applied for current booking parameters.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Your existing JavaScript for the mock-up
+        (function() {
+            const leadTimeSlider = document.getElementById('hotelLeadTime');
+            const adultsSlider = document.getElementById('hotelAdults');
+            const seasonRadios = document.querySelectorAll('input[name="hotelSeason"]');
+            const leadTimeValue = document.getElementById('hotelLeadTimeValue');
+            const adultsValue = document.getElementById('hotelAdultsValue');
+            const priceDisplay = document.getElementById('hotelPrice');
+            const occupancyDisplay = document.getElementById('hotelOccupancy');
+            const strategyDisplay = document.getElementById('hotelStrategy');
+            const explanationDisplay = document.getElementById('hotelExplanation');
+            function updateHotelDSS() {
+                if (!leadTimeSlider || !adultsSlider) return;
+                const leadTime = parseInt(leadTimeSlider.value);
+                const adults = parseInt(adultsSlider.value);
+                const season = document.querySelector('input[name="hotelSeason"]:checked')?.value || 'peak';
+                leadTimeValue.textContent = leadTime + ' days';
+                adultsValue.textContent = adults;
+                let price = 150 + (adults * 15) + (leadTime * -0.8);
+                let strategy = 'Standard';
+                let explanation = 'Standard pricing applied.';
+                const occupancy = Math.min(95, 40 + (adults * 8) + Math.random() * 10);
+                if (leadTime > 60) {
+                    price *= 0.85;
+                    strategy = 'Early Bird';
+                    explanation = 'Early booking discount (15%) applied.';
+                } else if (leadTime < 7) {
+                    price *= occupancy > 80 ? 1.25 : 0.8;
+                    strategy = occupancy > 80 ? 'Premium' : 'Last-minute';
+                    explanation = occupancy > 80 ? 'Premium pricing due to high demand.' : 'Last-minute discount offered.';
+                }
+                if (season === 'peak') {
+                    price *= 1.2;
+                    strategy = 'Peak Premium';
+                    explanation = 'Peak season surcharge applied.';
+                }
+                price = Math.max(80, Math.min(price, 450));
+                priceDisplay.textContent = '$' + price.toFixed(2);
+                occupancyDisplay.textContent = occupancy.toFixed(1) + '%';
+                strategyDisplay.textContent = strategy;
+                explanationDisplay.textContent = explanation;
+            }
+            if (leadTimeSlider) leadTimeSlider.addEventListener('input', updateHotelDSS);
+            if (adultsSlider) adultsSlider.addEventListener('input', updateHotelDSS);
+            seasonRadios.forEach(radio => radio.addEventListener('change', updateHotelDSS));
+            setTimeout(updateHotelDSS, 100);
+        })();
+    </script>
+</body>
+</html>
