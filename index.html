@@ -582,7 +582,8 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#certificates">Certificates</a></li> <li><a href="#resume">Resume</a></li>
+                <li><a href="#extracurricular">Activities</a></li>
+                <li><a href="#resume">Resume</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -608,17 +609,76 @@
     
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Academic Projects & Experience</h2>
+            <h2 class="section-title">Projects & Experience</h2>
             <p style="text-align: center; margin-bottom: 2em; font-size: 1.1em; color: #C0C0C0;">
-                Showcasing my academic achievements and practical experiences.
+                Showcasing professional work, academic achievements, and practical experiences.
             </p>
             <div class="projects-grid">
+
+                <div class="project-card">
+                    <h3>SAATR – Sistem Amaran Awal Tanah Runtuh (JKR / TCK Solutions)</h3>
+                    <p>Ongoing production enhancement of the landslide early-warning web application for JKR. Built with PHP and PostgreSQL, with deployments via WinSCP. Redesigned inclinometer single-graph and combine-graph pages to improve clarity and usability of multi-instrument environmental data (rainfall, piezometer, tilt sensors, soil moisture, water potential) for slope-risk monitoring. Improved visualisation of empirical rainfall thresholds and sensor displacement analytics used for early landslide warning.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">WinSCP</span>
+                        <span class="tech-tag">Environmental Monitoring</span>
+                        <span class="tech-tag">Data Visualisation</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>MITS – MADA Integrated Telemetry System (TCK Solutions)</h3>
+                    <p>Developing a live MapLibre / GeoLibre-based telemetry and irrigation-monitoring dashboard that visualises real-time environmental and conveyance data for MADA schemes. Contributing to system design documentation, including Software Design Specification (SDS) and Entity-Relationship Diagram (ERD) schema, while the platform continues to mature. Focused on modular, maintainable full-stack modules to handle large-scale environmental datasets and support future operational expansion.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">MapLibre / Leaflet</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Telemetry</span>
+                        <span class="tech-tag">Full-Stack</span>
+                        <span class="tech-tag">System Design</span>
+                    </div>
+                    <div class="project-links">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>MITRANS AI-Powered Semantic Document Management & Research Gap Detection</h3>
+                    <p>AI-driven thesis and report management system developed for MITRANS (UiTM) during internship. Leverages Large Language Models (LLM), Natural Language Processing (NLP), and detection techniques so users can store DEPPP records, theses, or other reports and query them through a SciSpace-like prompt-based search. Identifies content matching user inquiries, detects common document topics, and suggests research gaps. Exhibited at the OIC COMSTECH Exhibition, ILD. Live demo available on Hugging Face Spaces.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Large Language Model (LLM)</span>
+                        <span class="tech-tag">Natural Language Processing (NLP)</span>
+                        <span class="tech-tag">Hugging Face</span>
+                        <span class="tech-tag">Semantic Search</span>
+                        <span class="tech-tag">Web Development</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ran1a-Mitrans-Resource.hf.space" class="project-link" target="_blank" rel="noopener">Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>MySmart E-Bike GuideMapper @Campus</h3>
+                    <p>Collaborative mid-fidelity prototype with MITRANS and Adeeq Tanny Resources for a campus e-bike navigation and safety system at UiTM. Designed and developed the application mockup focused on safest path routing using Decision Support System (DSS) principles, route optimisation, user safety analytics, and intuitive UI/UX. Showcased at multiple exhibitions. Achieved Silver (Second Place) at the Invention, Innovation, & Design Exposition (IIDEX) 2025 and received a Bitcom Spotlight.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Decision Support System</span>
+                        <span class="tech-tag">Navigation System</span>
+                        <span class="tech-tag">Safety Routing</span>
+                        <span class="tech-tag">UI/UX Design</span>
+                        <span class="tech-tag">Mockup Development</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ranndarwisyah.github.io/ebike_uitm/" class="project-link" target="_blank" rel="noopener">View Prototype</a>
+                    </div>
+                </div>
+
                 <div class="project-card">
                     <h3>Fuel Price Time Series Forecasting</h3>
-                    <p data-original-description="A 6-month project focusing on time series forecasting of fuel prices. Utilized Python for data analysis and machine learning algorithms, specifically a Long Short-Term Memory (LSTM) model.">A 6-month project focusing on time series forecasting of fuel prices. Utilized Python for data analysis and machine learning algorithms, specifically a Long Short-Term Memory (LSTM) model.</p>
-                    
+                    <p data-original-description="Applied machine learning–based time series forecasting using Long Short-Term Memory (LSTM) models in Python to predict global fuel price trends from weekly benchmark data (weighted average across ~100 countries), capturing short-term instability and long-term patterns. Aimed to provide consumers with data-driven insights for budget planning and basic risk management.">Applied machine learning–based time series forecasting using Long Short-Term Memory (LSTM) models in Python to predict global fuel price trends from weekly benchmark data (weighted average across ~100 countries), capturing short-term instability and long-term patterns. Aimed to provide consumers with data-driven insights for budget planning and basic risk management. Completed over 6 months.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LSTM</span>
                         <span class="tech-tag">Time Series</span>
                         <span class="tech-tag">Machine Learning</span>
                         <span class="tech-tag">Data Analysis</span>
@@ -627,36 +687,6 @@
                         <a href="fuel_price_dashboard.html" class="project-link" target="_blank">View Mock-Up</a>
                     </div>
                 </div>
-
-              <div class="project-card">
-                  <h3>Report Management System (Ongoing)</h3>
-                  <p>A comprehensive system developed for the Mitrans (UiTM) Resource Department to streamline report management. The platform allows users to upload, analyze, and store documents such as theses and reports. Utilizing advanced machine learning models for document classification and object detection, the system offers a SciSpace-like search function, enabling users to find specific information or entire documents by prompting with keywords or questions. The system also leverages a Large Language Model (LLM) for semantic search and content analysis. It provides direct PDF downloads or directs users to physical retrieval options if the file is unavailable. With that the model detects which paper titles are common and suggests topics on that hasn't been done.</p>
-                  <div class="tech-stack">
-                      <span class="tech-tag">Large Language Model (LLM)</span>
-                      <span class="tech-tag">Natural Language Processing (NLP)</span>
-                      <span class="tech-tag">Classification</span>
-                      <span class="tech-tag">Object Detection</span>
-                      <span class="tech-tag">Web Development</span>
-                  </div>
-                  <div class="project-links">
-                      <a href="https://ran1a-resourcedb59.hf.space" class="project-link" target="_blank" rel="noopener">Live Demo</a>
-                  </div>
-              </div>
-
-              <div class="project-card">
-                  <h3>MySmart E-Bike GuideMapper @Campus (Ongoing)</h3>
-                  <p>A collaborative project with Mitrans and Adeeq Tanny Resources to develop an e-bike navigation and safety system for students at UiTM campus. The project focuses on creating the safest path routing using Decision Support System (DSS) principles. I designed and developed the application mockup, which has been showcased at multiple exhibitions. The system aims to provide students with safe, efficient routes around campus while promoting sustainable transportation.</p>
-                  <div class="tech-stack">
-                      <span class="tech-tag">Decision Support System</span>
-                      <span class="tech-tag">Navigation System</span>
-                      <span class="tech-tag">Safety Routing</span>
-                      <span class="tech-tag">UI/UX Design</span>
-                      <span class="tech-tag">Mockup Development</span>
-                  </div>
-                  <div class="project-links">
-                      <a href="https://ranndarwisyah.github.io/ebike_uitm/" class="project-link" target="_blank" rel="noopener">View Prototype</a>
-                  </div>
-              </div>
 
                 <div class="project-card">
                     <h3>Flight Scheduling Optimization (GA)</h3>
@@ -679,7 +709,7 @@
 
                     <div class="project-card">
                         <h3>Hotel Revenue Decision Support System</h3>
-                        <p>By utilizing the Hotel Booking Demand Dataset, the DSS provides a clear picture of trends to help hotels manage room pricing, offers, and resource allocation. Completed in 1 month.</p>
+                        <p>Created a data-driven decision support system for hotel revenue management, leveraging extensive datasets from Kaggle and deploying an interactive dashboard via Google Colab. Provides clear trend insights to support room pricing, offers, and resource allocation decisions. Completed in 1 month.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Decision Support System</span>
                             <span class="tech-tag">Data Analysis</span>
@@ -768,7 +798,7 @@
     
  
 
-      <section id="extracurricular" class="extracurricular-activities">
+      <section id="extracurricular" class="extracurricular">
         <div class="container">
             <h2 class="section-title">Extracurricular Activities</h2>
             <p style="text-align: center; margin-bottom: 2em; font-size: 1.1em; color: #C0C0C0;">
@@ -799,6 +829,21 @@
                     <h3>Robotics Tutor</h3>
                     <p>Jazro - 2024</p>
                 </div>
+
+                <div class="extracurricular-card">
+                    <h3>IIDEX 2025 – Silver Award (Second Place)</h3>
+                    <p>Invention, Innovation, & Design Exposition, UiTM – for MySmart E-Bike prototype</p>
+                </div>
+
+                <div class="extracurricular-card">
+                    <h3>Bitcom Spotlight 2025</h3>
+                    <p>Recognition for MySmart E-Bike Smart Mobility prototype</p>
+                </div>
+
+                <div class="extracurricular-card">
+                    <h3>OIC COMSTECH Exhibition, ILD</h3>
+                    <p>Exhibited MITRANS AI-Powered Semantic Document Management System</p>
+                </div>
             </div>
         </div>
     </section>
@@ -808,7 +853,7 @@
             <h2 class="section-title">Resume</h2>
             <div class="resume-card">
                 <h3>View My Resume</h3>
-                <p>Get an overview of my experience, skills, and qualifications. Available for online viewing.</p>
+                <p>Bachelor of Information Systems (Hons.) Intelligent Systems Engineering graduate. Currently Software Engineer at TCK Solutions working on environmental telemetry and early-warning systems (SAATR &amp; MITS). View the full overview of experience, skills, and qualifications.</p>
                 <div class="resume-buttons">
                     <a href="https://drive.google.com/file/d/1PvVeGw9Ze7nAuhkIQuwDpcTR6Txn7scS/view?usp=sharing" class="resume-btn download-btn" target="_blank" rel="noopener">👁️ View Resume</a>
                 </div>
@@ -934,4 +979,3 @@ Current Description: ${projectDescription}`;
     </script>
 </body>
 </html>
-                  
